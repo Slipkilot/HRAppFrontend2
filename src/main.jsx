@@ -7,9 +7,9 @@ import "./index.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
 import { store } from "./Redux/app/Store.jsx";
-import { decode } from "./Services/JwtDecoder.jsx";
+import { decode } from "./Services/jwtDecoder.jsx";
 
-const transitionDuration = "0.3s"; 
+const transitionDuration = "0.3s";
 
 const userTheme = createTheme({
   palette: {
@@ -87,7 +87,7 @@ const AppWrapper = () => {
 
   function changeThema(themaMode, thema) {
     setIsDark(themaMode);
-    setRole(thema)
+    setRole(thema);
   }
   return (
     <>

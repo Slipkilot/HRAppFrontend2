@@ -23,8 +23,8 @@ import QuickRequests from "./Contents/Home/QuickRequest.jsx";
 import ListCompanies from "./Contents/SiteOwnerSide/SiteOwnerHome/ListCompanies.jsx";
 import AddCompany from "./Contents/SiteOwnerSide/AddCompany/AddCompany.jsx";
 import EditCompany from "./Contents/SiteOwnerSide/EditCompany.jsx/EditCompany.jsx";
-import AccessDenied from "./AccessDenied.jsx"
-import { decode } from "../Services/JwtDecoder.jsx";
+import AccessDenied from "./AccessDenied.jsx";
+import { decode } from "../Services/jwtDecoder.jsx";
 
 export const Template = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -38,14 +38,13 @@ export const Template = () => {
       navigate("/login");
     }
     setIsAdmin(decode().currentRole === "Admin");
-    setIsOwner(decode().currentRole === "SiteAdmin"); 
+    setIsOwner(decode().currentRole === "SiteAdmin");
     setIsMailVerified(decode().emailConfirmed === "True");
   }, []);
 
   useEffect(() => {
     const darkModeCondition = sessionStorage.getItem("DarkMode");
-    if(darkModeCondition == "true")
-    dispatch(setCheckboxValue(true));
+    if (darkModeCondition == "true") dispatch(setCheckboxValue(true));
   }, []);
 
   return (
@@ -62,7 +61,6 @@ export const Template = () => {
       >
         <Toolbar />
         <Routes>
-
           {!isMailVerified ? (
             <>
               <Route path="/" element={<PasswordChange />} />
@@ -70,69 +68,76 @@ export const Template = () => {
               <Route path="/profile" element={<PasswordChange />} />
               <Route path="/profileChange" element={<PasswordChange />} />
               <Route path="/request" element={<PasswordChange />} />
-              <Route path="/profile/passwordChange" element={<PasswordChange />} />
+              <Route
+                path="/profile/passwordChange"
+                element={<PasswordChange />}
+              />
               <Route path="/contact" element={<PasswordChange />} />
               <Route path="/settings" element={<PasswordChange />} />
               <Route path="/quickRequests" element={<PasswordChange />} />
             </>
           ) : (
-            <>  
-            <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profileChange" element={<ProfileUpdate />} />
-          <Route path="/request" element={<RequestForm />} />
-          <Route path="/profile/passwordChange" element={<PasswordChange />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/quickRequests" element={<QuickRequests />} />
-          </>
-          )}
-          
-          {isAdmin ? 
-            (!isMailVerified ?(
             <>
-              <Route path="/addPersonal" element={<PasswordChange />} />
-              <Route path="/personnelList" element={<PasswordChange />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profileChange" element={<ProfileUpdate />} />
+              <Route path="/request" element={<RequestForm />} />
               <Route
-                path="/personnelList/personalDetails/:id"
+                path="/profile/passwordChange"
                 element={<PasswordChange />}
               />
-              <Route
-                path="/personnelList/personalEdit/:id"
-                element={<PasswordChange />}
-              />
-              <Route path="/requestView" element={<PasswordChange />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/quickRequests" element={<QuickRequests />} />
             </>
-          ) : (<>
-            <Route path="/addPersonal" element={<AddPersonal />} />
-            <Route path="/personnelList" element={<PersonnelList />} />
-            <Route
-              path="/personnelList/personalDetails/:id"
-              element={<PersonalDetails />}
-            />
-            <Route
-              path="/personnelList/personalEdit/:id"
-              element={<EditPersonal />}
-            />
-            <Route path="/requestView" element={<RequestView />} />
-          </>)):null}
+          )}
 
+          {isAdmin ? (
+            !isMailVerified ? (
+              <>
+                <Route path="/addPersonal" element={<PasswordChange />} />
+                <Route path="/personnelList" element={<PasswordChange />} />
+                <Route
+                  path="/personnelList/personalDetails/:id"
+                  element={<PasswordChange />}
+                />
+                <Route
+                  path="/personnelList/personalEdit/:id"
+                  element={<PasswordChange />}
+                />
+                <Route path="/requestView" element={<PasswordChange />} />
+              </>
+            ) : (
+              <>
+                <Route path="/addPersonal" element={<AddPersonal />} />
+                <Route path="/personnelList" element={<PersonnelList />} />
+                <Route
+                  path="/personnelList/personalDetails/:id"
+                  element={<PersonalDetails />}
+                />
+                <Route
+                  path="/personnelList/personalEdit/:id"
+                  element={<EditPersonal />}
+                />
+                <Route path="/requestView" element={<RequestView />} />
+              </>
+            )
+          ) : null}
 
           {isOwner ? (
             <>
-          <Route path="/listCompanies" element={<ListCompanies />} />
-          <Route path="/addCompany" element={<AddCompany />} />
-          <Route path="/editCompany/:id" element={<EditCompany />} />
-          </>
-          ) : 
-          <>
-          <Route path="/listCompanies" element={<AccessDenied />} />
-          <Route path="/addCompany" element={<AccessDenied />} />
-          <Route path="/editCompany/:id" element={<AccessDenied />} />
-          </>
-          }
-
+              <Route path="/listCompanies" element={<ListCompanies />} />
+              <Route path="/addCompany" element={<AddCompany />} />
+              <Route path="/editCompany/:id" element={<EditCompany />} />
+            </>
+          ) : (
+            <>
+              <Route path="/listCompanies" element={<AccessDenied />} />
+              <Route path="/addCompany" element={<AccessDenied />} />
+              <Route path="/editCompany/:id" element={<AccessDenied />} />
+            </>
+          )}
         </Routes>
       </Box>
     </Box>

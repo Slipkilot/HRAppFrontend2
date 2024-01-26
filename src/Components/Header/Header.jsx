@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { decode } from "../../Services/JwtDecoder";
+import { decode } from "../../Services/jwtDecoder.jsx";
 import Person4Icon from "@mui/icons-material/Person";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,9 +83,18 @@ export const Header = () => {
             TeamPulse
           </Typography>
           <img
-            src={logo.state && logo.state.length < 20 ? "https://i.ibb.co/G9mmRQd/1a08f6f0-c084-4b5c-b05f-94b2dfe404be-removebg-preview-copy.png" : logo.state}
+            src={
+              logo.state && logo.state.length < 20
+                ? "https://i.ibb.co/G9mmRQd/1a08f6f0-c084-4b5c-b05f-94b2dfe404be-removebg-preview-copy.png"
+                : logo.state
+            }
             alt={decode().companyName}
-            style={{ width: "40px" , height:"40px", borderRadius:"50%", margin:"5px" }}
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              margin: "5px",
+            }}
           />
           <Typography
             variant="h2"

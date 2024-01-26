@@ -21,7 +21,7 @@ import WarningIcon from "@mui/icons-material/Warning";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import InfoIcon from "@mui/icons-material/Info";
-import { decode } from "../../../Services/JwtDecoder";
+import { decode } from "../../../Services/jwtDecoder.jsx";
 
 const PasswordChange = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -81,7 +81,6 @@ const PasswordChange = () => {
     });
   };
 
-
   const isPasswordMatch = passwords.newPassword === passwords.confirmPassword;
   const isPasswordValid = passwordStrength >= 100 && isNewPasswordEntered;
 
@@ -124,7 +123,7 @@ const PasswordChange = () => {
                 fontFamily: "Century Gothic, Roboto, sans-serif",
                 fontSize: "16px",
                 fontWeight: "bold",
-                color: "text.primary"
+                color: "text.primary",
               }}
             >
               <CardContent>
@@ -138,17 +137,21 @@ const PasswordChange = () => {
                     </Typography>
                     <Typography variant="body2" fontWeight="bold">
                       Kullanıcı Adı:
-                      <span style={{ marginLeft: "5px" , fontWeight: "normal" }}>
+                      <span style={{ marginLeft: "5px", fontWeight: "normal" }}>
                         {decode().firstName} {decode().lastName}
                       </span>
                     </Typography>
                     <Typography variant="body2" fontWeight="bold">
                       Email Adresi:
-                      <span style={{ marginLeft: "5px" , fontWeight: "normal" }}>{decode().Email}</span>
+                      <span style={{ marginLeft: "5px", fontWeight: "normal" }}>
+                        {decode().Email}
+                      </span>
                     </Typography>
                     <Typography variant="body2" fontWeight="bold">
                       Rol:
-                      <span style={{ marginLeft: "5px" , fontWeight: "normal" }}>{decode().currentRole}</span>
+                      <span style={{ marginLeft: "5px", fontWeight: "normal" }}>
+                        {decode().currentRole}
+                      </span>
                     </Typography>
                   </Grid>
                 </Grid>
