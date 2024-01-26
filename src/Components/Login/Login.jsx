@@ -92,7 +92,7 @@ export const Login = () => {
           sm={false}
           md={7}
           sx={{
-            backgroundImage: `url(${"src/assets/meeting.jpg"})`,
+            backgroundImage: `url(${"https://kartalphoto.blob.core.windows.net/images/meeting.jpg"})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
